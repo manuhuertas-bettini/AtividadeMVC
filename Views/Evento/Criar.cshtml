@@ -1,0 +1,61 @@
+@model AtividadeMVC.Models.Evento
+
+@{
+    ViewData["Title"] = "Cadastrar Evento";
+}
+
+<h2>Cadastrar Novo Evento</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Criar" method="post">
+            <p class="mb-3">
+                <label asp-for="Nome" class="form-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </p>
+
+            <p class="mb-3">
+                <label asp-for="Descricao" class="form-label"></label>
+                <textarea asp-for="Descricao" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </p>
+
+            <p class="mb-3">
+                <label asp-for="Local" class="form-label"></label>
+                <input asp-for="Local" class="form-control" />
+                <span asp-validation-for="Local" class="text-danger"></span>
+            </p>
+
+            <p class="mb-3">
+                <label asp-for="DataEvento" class="form-label"></label>
+                <input asp-for="DataEvento" class="form-control" />
+                <span asp-validation-for="DataEvento" class="text-danger"></span>
+            </p>
+
+            <p class="row">
+                <p class="col-md-6 mb-3">
+                    <label asp-for="QuantidadeVagas" class="form-label"></label>
+                    <input asp-for="QuantidadeVagas" class="form-control" />
+                    <span asp-validation-for="QuantidadeVagas" class="text-danger"></span>
+                </p>
+
+                <p class="col-md-6 mb-3">
+                    <label asp-for="ValorIngresso" class="form-label"></label>
+                    <input asp-for="ValorIngresso" class="form-control" />
+                    <span asp-validation-for="ValorIngresso" class="text-danger"></span>
+                </p>
+            </p>
+
+            <p class="mt-3">
+                <button type="submit" class="btn btn-success">Salvar Evento</button>
+                <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+            </p>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

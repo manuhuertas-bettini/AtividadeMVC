@@ -1,0 +1,70 @@
+@model AtividadeMVC.Models.BuscarEventoViewModel
+
+@{
+    ViewData["Title"] = "Buscar Eventos";
+}
+
+<h2>Buscar Eventos</h2>
+<hr />
+
+<form asp-action="Buscar" method="post" class="card p-3 mb-4 bg-light">
+    <div class="row g-3 align-items-end">
+        <div class="col-md-4">
+            <label asp-for="NomeBusca" class="form-label"></label>
+            <input asp-for="NomeBusca" class="form-control" placeholder="Ex: Workshop..." />
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="LocalBusca" class="form-label"></label>
+            <input asp-for="LocalBusca" class="form-control" placeholder="Ex: Auditório..." />
+        </div>
+
+        <div class="col-md-2">
+            <label asp-for="DataInicial" class="form-label"></label>
+            <input asp-for="DataInicial" class="form-control" />
+        </div>
+
+        <div class="col-md-2 d-grid">
+            <button type="submit" class="btn btn-primary">Pesquisar</button>
+        </div>
+    </div>
+</form>
+
+@if (Model.Resultados == null || !Model.Resultados.Any())
+{
+    <div class="alert alert-warning">
+        Nenhum evento encontrado com os critérios informados.
+    </div>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Local</th>
+                <th>Data</th>
+                <th>Quantidade de Vagas</th>
+                <th>Valor do Ingresso</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var evento in Model.Resultados)
+            {
+                <tr>
+                    <td>@evento.Nome</td>
+                    <td>@evento.Local</td>
+                    <td>@evento.DataEvento.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@evento.QuantidadeVagas</td>
+                    <td>@evento.ValorIngresso.ToString("C")</td>
+                    <td>
+                        <a asp-action="Detalhes" asp-route-id="@evento.Id" class="btn btn-sm btn-info text-white">Detalhes</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<a asp-action="Index" class="btn btn-secondary mt-2">Voltar para Listagem</a>

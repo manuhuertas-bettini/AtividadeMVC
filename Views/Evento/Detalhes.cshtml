@@ -1,0 +1,39 @@
+@model AtividadeMVC.Models.Evento
+
+@{
+    ViewData["Title"] = "Detalhes do Evento";
+}
+
+<h2>Detalhes do Evento</h2>
+<hr />
+
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">@Model.Nome</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-3">Código (ID)</dt>
+            <dd class="col-sm-9">@Model.Id</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Descricao)</dt>
+            <dd class="col-sm-9">@Model.Descricao</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Local)</dt>
+            <dd class="col-sm-9">@Model.Local</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.DataEvento)</dt>
+            <dd class="col-sm-9">@Model.DataEvento.ToString("dd/MM/yyyy 'às' HH:mm")</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.QuantidadeVagas)</dt>
+            <dd class="col-sm-9">@Model.QuantidadeVagas vagas</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.ValorIngresso)</dt>
+            <dd class="col-sm-9">@Model.ValorIngresso.ToString("C")</dd>
+        </dl>
+    </div>
+    <div class="card-footer">
+        <a asp-action="Index" class="btn btn-secondary">Voltar para Listagem</a>
+        <a asp-action="Buscar" class="btn btn-outline-primary">Ir para Busca</a>
+    </div>
+</div>
